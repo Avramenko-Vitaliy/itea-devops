@@ -1,5 +1,7 @@
-FROM alpine
+FROM alpine:3.10
 
 RUN apk add --no-cache git
 
-CMD git clone $REPO_URL /data
+WORKDIR /data
+
+ENTRYPOINT ["git", "clone"]
