@@ -1,0 +1,8 @@
+- hosts: virtual
+  become: yes
+  vars:
+    server_name: localhost
+    server_port: 9000
+  roles:
+    - nginx
+    - php

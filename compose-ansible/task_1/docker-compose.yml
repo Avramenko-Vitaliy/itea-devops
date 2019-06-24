@@ -1,0 +1,13 @@
+version: '3'
+services:
+  nginx:
+    build: nginx
+    links:
+      - php-fpm:php-fpm
+    ports:
+      - "80:80"
+    depends_on:
+      - php-fpm
+
+  php-fpm:
+    build: php

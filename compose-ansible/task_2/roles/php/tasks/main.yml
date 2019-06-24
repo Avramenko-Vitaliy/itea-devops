@@ -1,0 +1,21 @@
+- name: Install PHP
+  apt: name={{ item }} update_cache=yes state=latest
+  with_items:
+    - php-cli
+    - php-curl
+    - php-fpm
+    - php-intl
+    - php-json
+    - php-mcrypt
+    - php-sqlite3
+    - sqlite3
+
+- name: Copy config
+  template:
+    src: php.conf.j2
+    dest: /etc/php/7.0/fpm/pool.d/www.conf
+
+- name: Copy src
+  copy:
+    src: ./files/index.php
+    dest: /usr/share/nginx/html/index.php
