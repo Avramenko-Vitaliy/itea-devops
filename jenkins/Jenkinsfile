@@ -10,7 +10,7 @@ node {
             }
 
             stage('Build docker') {
-                sh 'docker build ../git-docker/task_2 -t vitaliyavramenko/devops-task2:lates'
+                sh 'docker build ./git-docker/task_2 -t vitaliyavramenko/devops-task2:lates'
             }
 
             stage('Push docker') {
