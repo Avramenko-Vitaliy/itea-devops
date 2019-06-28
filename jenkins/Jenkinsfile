@@ -17,10 +17,6 @@ node {
                 sh 'docker push vitaliyavramenko/devops-task2:lates'
             }
 
-            stage('Run docker') {
-                sh 'docker run --rm -e LINE="Hello World!" -p 80:80 -d vitaliyavramenko/devops-task2'
-            }
-
         } catch (e) {
             sh 'exit 1'
             currentBuild.result = "FAILED"
