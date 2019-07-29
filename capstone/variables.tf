@@ -2,9 +2,9 @@ variable "ecs_key_pair_name" { default = "itea-devops-l-config" }
 
 variable "ami_id" { default = "ami-007571470797b8ffa" }
 
-variable "aws_access_key" { default = "AKIAR4S3KN4UP7BHW77F" }
+variable "aws_access_key" {}
 
-variable "aws_secret_key" { default = "5pL7tcpeFvL2H1EnPtfTzbAK/+dxnaMDPZz3fvCn" }
+variable "aws_secret_key" {}
 
 variable "aws_region" { default = "us-east-1" }
 
