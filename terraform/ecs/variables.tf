@@ -12,8 +12,6 @@ variable "aws_region" { default = "us-east-1" }
 
 variable "ecs_cluster" { default = "itea-dovops-homework" }
 
-variable "availability_zone" { default = { us-east-1 = "us-east-1" } }
-
 variable "max_instance_size" { default = 2 }
 
 variable "min_instance_size" { default = 2 }

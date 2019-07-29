@@ -1,5 +1,5 @@
-resource "aws_security_group" "sg" {
-  name        = "security_group_itea"
+resource "aws_security_group" "jenkins-sg" {
+  name        = "jenkins-sg"
 
   ingress {
     from_port   = 80

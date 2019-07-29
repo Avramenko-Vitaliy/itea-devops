@@ -1,7 +1,7 @@
 resource "aws_alb" "ecs-load-balancer" {
   name = "ecs-load-balancer"
   security_groups = ["${aws_security_group.sg.id}"]
-  subnets =  "${var.subnets}"
+  subnets =  ["${aws_subnet.us-east-1-public-1.id}", "${aws_subnet.us-east-1-public-2.id}", "${aws_subnet.us-east-1-public-3.id}"]
 
   tags {
     Name = "ecs-load-balancer"
@@ -12,7 +12,7 @@ resource "aws_alb_target_group" "ecs-target-group" {
   name = "ecs-target-group"
   port = "80"
   protocol = "HTTP"
-  vpc_id = "${var.vpc}"
+  vpc_id = "${aws_vpc.capstone-vpc.id}"
 
   tags {
     Name = "ecs-target-group"
