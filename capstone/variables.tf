@@ -1,25 +1,64 @@
-variable "ecs_key_pair_name" { default = "itea-devops-l-config" }
+# main creds for AWS connection
+variable "aws_access_key_id" {
+}
 
-variable "ami_id" { default = "ami-007571470797b8ffa" }
+variable "aws_secret_access_key" {
+}
 
-variable "aws_access_key" {}
+variable "ecs_cluster" {
+  default = "capstone-itea"
+}
 
-variable "aws_secret_key" {}
+variable "ecs_key_pair_name" {
+  default = "itea-devops-l-config"
+}
 
-variable "aws_region" { default = "us-east-1" }
+variable "region" {
+  default = "us-east-1"
+}
 
-variable "ecs_cluster" { default = "itea-capstone" }
+variable "availability_zone" {
+  default = {
+    us-east-1 = "us-east-1a"
+  }
+}
 
-variable "max_instance_size" { default = 2 }
+variable "ecr_name" {
+  default = "simple-back"
+}
 
-variable "min_instance_size" { default = 2 }
+variable "ami_id" {
+  default = "ami-fad25980"
+}
 
-variable "desired_capacity" { default = 2 }
+########################### VPC Config ################################
 
-variable "ecr_name" { default = "simple-back"}
+variable "vpc" {
+  default = "10.0.0.0/16"
+}
 
-variable "availability_zones" { default = ["us-east-1a", "us-east-1b", "us-east-1c", "us-east-1d"] }
+variable "network_cidr" {
+  default = "10.0.0.0/16"
+}
 
-variable "vpc_cidr" { default = "10.0.0.0/16" }
+variable "public_01_cidr" {
+  default = "10.0.0.0/24"
+}
 
-variable "public_subnet_cidr" { default = "10.0.0.0/24" }
+variable "public_02_cidr" {
+  default = "10.0.10.0/24"
+}
+
+########################### Autoscale Config ################################
+
+variable "max_instance_size" {
+  default = 2
+}
+
+variable "min_instance_size" {
+  default = 2
+}
+
+variable "desired_capacity" {
+  default = 2
+}

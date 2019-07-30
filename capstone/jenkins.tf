@@ -21,6 +21,7 @@ sudo /usr/sbin/alternatives --set java /usr/lib/jvm/jre-1.8.0-openjdk.x86_64/bin
 sudo /usr/sbin/alternatives --set javac /usr/lib/jvm/java-1.8.0-openjdk.x86_64/bin/javac
 
 sudo usermod -a -G docker ec2-user
+sudo usermod -a -G docker jenkins
 
 sudo service docker start
 sudo service jenkins start
@@ -28,5 +29,59 @@ EOF
 
   tags = {
     Name = "EC2Jenkins"
+  }
+}
+
+resource "aws_iam_role" "jenkins-role" {
+  name = "jenkins-role"
+
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
+
+  tags = {
+    Name = "EC2-Role"
+  }
+}
+
+resource "aws_iam_role_policy_attachment" "jenkins_policy_atachment" {
+  role = "${aws_iam_role.jenkins-role.name}"
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+}
+
+resource "aws_security_group" "jenkins-sg" {
+  name        = "jenkins-sg"
+
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
   }
 }
