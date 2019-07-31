@@ -1,5 +1,6 @@
 // Provider for users with access and secret keys
 provider "aws" {
-  shared_credentials_file = "${var.aws_access_credentials_path}"
+  access_key = "${var.aws_access_key_id}"
+  secret_key = "${var.aws_secret_access_key}"
   region = "${var.region}"
 }

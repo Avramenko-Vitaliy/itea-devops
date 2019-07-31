@@ -16,12 +16,10 @@ resource "aws_ecs_task_definition" "capstone" {
     ],
     "cpu": 256,
     "memory": 300,
-    "image": "130114285352.dkr.ecr.us-east-1.amazonaws.com/nginx:latest",
+    "image": "${var.ecr_nginx_name}:${var.ecr_nginx_tag}",
     "essential": true,
-    "name": "nginx"
-    "links": [
-       "simple-back"
-    ],
+    "name": "nginx",
+    "links": ["simple-back"]
   },
   {
     "portMappings": [
@@ -33,10 +31,11 @@ resource "aws_ecs_task_definition" "capstone" {
     ],
     "cpu": 256,
     "memory": 300,
-    "image": "130114285352.dkr.ecr.us-east-1.amazonaws.com/simple-back:${var.ecr_image_tag}"",
+    "image": "${var.ecr_back_name}:${var.ecr_back_tag}",
     "essential": true,
     "name": "simple-back"
   }
 ]
 DEFINITION
+
 }

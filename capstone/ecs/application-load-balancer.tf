@@ -1,4 +1,3 @@
-
 resource "aws_alb" "ecs-load-balancer" {
     name                = "ecs-load-balancer"
     security_groups     = ["${aws_security_group.public_sg.id}"]

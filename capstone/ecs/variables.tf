@@ -1,8 +1,6 @@
 # main creds for AWS connection
-variable "aws_access_key_id" {
-}
-
-variable "aws_secret_access_key" {
+variable "aws_access_credentials_path" {
+  default = "/home/vitaliy/.aws/credentials"
 }
 
 variable "ecs_cluster" {
@@ -62,5 +60,3 @@ variable "min_instance_size" {
 variable "desired_capacity" {
   default = 2
 }
-
-variable "ecr_image_tag" {}
